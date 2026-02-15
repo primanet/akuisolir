@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Isolir</title>
+    <meta name="description" content="Halaman pemberitahuan isolir akses internet karena tunggakan pembayaran">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-animation">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <!-- Icon Section -->
+            <div class="icon-container">
+                <div class="wifi-icon">
+                    <div class="wifi-bar bar-1"></div>
+                    <div class="wifi-bar bar-2"></div>
+                    <div class="wifi-bar bar-3"></div>
+                    <div class="wifi-slash"></div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <h1 class="title">
+                    <span class="title-line">Akses Internet</span>
+                    <span class="title-line gradient-text">Dimatikan</span>
+                </h1>
+
+                <p class="subtitle">Layanan internet Anda sementara tidak dapat digunakan</p>
+
+                <div class="info-card">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 8V12M12 16H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="info-text">
+                            <h3>Alasan Penangguhan</h3>
+                            <p>Terdapat tunggakan pembayaran pada akun Anda</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 8V12L15 15M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="info-text">
+                            <h3>Waktu Isolir</h3>
+                            <p id="current-time">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-section">
+                    <h2 class="action-title">Cara Mengaktifkan Kembali</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Hubungi Customer Service</h4>
+                                <p>Konfirmasi pembayaran Anda kepada tim kami</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Lakukan Pembayaran</h4>
+                                <p>Selesaikan tunggakan sesuai tagihan</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Aktivasi Otomatis</h4>
+                                <p>Layanan akan aktif dalam 1-2 jam setelah konfirmasi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-section">
+                    <button class="contact-btn" id="contactBtn">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M3 5C3 3.89543 3.89543 3 5 3H8.27924C8.70967 3 9.09181 3.27543 9.22792 3.68377L10.7257 8.17721C10.8831 8.64932 10.6694 9.16531 10.2243 9.38787L7.96701 10.5165C9.06925 12.9612 11.0388 14.9308 13.4835 16.033L14.6121 13.7757C14.8347 13.3306 15.3507 13.1169 15.8228 13.2743L20.3162 14.7721C20.7246 14.9082 21 15.2903 21 15.7208V19C21 20.1046 20.1046 21 19 21H18C9.71573 21 3 14.2843 3 6V5Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span>Hubungi Customer Service</span>
+                    </button>
+
+                    <div class="contact-info" id="contactInfo">
+                        <div class="contact-item">
+                            <strong>WhatsApp:</strong>
+                            <a href="https://wa.me/6285230699395" target="_blank">+62 852-3069-9395</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Telepon:</strong>
+                            <a href="tel:+6285230699395">+62 852-3069-9395</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>&copy; 2026 Internet Service Provider (LNS NET). All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
