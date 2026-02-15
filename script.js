@@ -2,7 +2,7 @@
 function updateTime() {
     const timeElement = document.getElementById('current-time');
     const now = new Date();
-    
+
     const options = {
         weekday: 'long',
         year: 'numeric',
@@ -13,26 +13,12 @@ function updateTime() {
         second: '2-digit',
         timeZone: 'Asia/Jakarta'
     };
-    
+
     const formattedTime = now.toLocaleDateString('id-ID', options);
     timeElement.textContent = formattedTime;
 }
 
-// Toggle contact info
-function toggleContactInfo() {
-    const contactInfo = document.getElementById('contactInfo');
-    contactInfo.classList.toggle('show');
-    
-    // Add ripple effect
-    const btn = document.getElementById('contactBtn');
-    const ripple = document.createElement('span');
-    ripple.classList.add('ripple');
-    btn.appendChild(ripple);
-    
-    setTimeout(() => {
-        ripple.remove();
-    }, 600);
-}
+
 
 // Particle effect on mouse move
 function createParticle(x, y) {
@@ -42,38 +28,38 @@ function createParticle(x, y) {
     particle.style.top = y + 'px';
     particle.style.width = Math.random() * 5 + 2 + 'px';
     particle.style.height = particle.style.width;
-    
+
     const colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c'];
     particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-    
+
     document.body.appendChild(particle);
-    
+
     // Animate particle
     const angle = Math.random() * Math.PI * 2;
     const velocity = Math.random() * 3 + 2;
     const dx = Math.cos(angle) * velocity;
     const dy = Math.sin(angle) * velocity;
-    
+
     let opacity = 1;
     let posX = x;
     let posY = y;
-    
+
     const animate = () => {
         opacity -= 0.02;
         posX += dx;
         posY += dy;
-        
+
         particle.style.opacity = opacity;
         particle.style.left = posX + 'px';
         particle.style.top = posY + 'px';
-        
+
         if (opacity > 0) {
             requestAnimationFrame(animate);
         } else {
             particle.remove();
         }
     };
-    
+
     requestAnimationFrame(animate);
 }
 
@@ -128,11 +114,11 @@ document.addEventListener('mousemove', (e) => {
 // Scroll reveal animation
 function revealOnScroll() {
     const elements = document.querySelectorAll('.info-item, .step');
-    
+
     elements.forEach((element) => {
         const elementTop = element.getBoundingClientRect().top;
         const elementVisible = 150;
-        
+
         if (elementTop < window.innerHeight - elementVisible) {
             element.style.opacity = '1';
             element.style.transform = 'translateY(0)';
@@ -140,30 +126,7 @@ function revealOnScroll() {
     });
 }
 
-// Add tilt effect to cards
-function addTiltEffect() {
-    const cards = document.querySelectorAll('.info-item, .step, .main-content');
-    
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = (y - centerY) / 20;
-            const rotateY = (centerX - x) / 20;
-            
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-        });
-    });
-}
+
 
 // Countdown timer (optional feature)
 function startCountdown(targetDate) {
@@ -186,7 +149,7 @@ function startCountdown(targetDate) {
             </div>
         </div>
     `;
-    
+
     // Add countdown styles
     const countdownStyle = document.createElement('style');
     countdownStyle.textContent = `
@@ -245,26 +208,26 @@ function startCountdown(targetDate) {
         }
     `;
     document.head.appendChild(countdownStyle);
-    
+
     // Update countdown every second
     const updateCountdown = () => {
         const now = new Date().getTime();
         const distance = targetDate - now;
-        
+
         if (distance < 0) {
             countdownElement.innerHTML = '<div class="countdown-title">Silakan refresh halaman atau hubungi CS</div>';
             return;
         }
-        
+
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
+
         document.getElementById('hours').textContent = String(hours).padStart(2, '0');
         document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
         document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
     };
-    
+
     // Uncomment to enable countdown (set target date)
     // const actionSection = document.querySelector('.action-section');
     // actionSection.appendChild(countdownElement);
@@ -277,7 +240,7 @@ function animateWifiIcon() {
     const wifiIcon = document.querySelector('.wifi-icon');
     let position = 0;
     let direction = 1;
-    
+
     setInterval(() => {
         position += direction * 0.5;
         if (position > 10 || position < -10) {
@@ -292,21 +255,31 @@ function init() {
     // Update time immediately and every second
     updateTime();
     setInterval(updateTime, 1000);
-    
-    // Add event listener to contact button
-    const contactBtn = document.getElementById('contactBtn');
-    contactBtn.addEventListener('click', toggleContactInfo);
-    
+
     // Add scroll reveal
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll(); // Initial check
-    
+
     // Add tilt effect
-    addTiltEffect();
-    
+
     // Animate WiFi icon
     animateWifiIcon();
-    
+
+    // Ensure contact button works properly
+    const contactBtn = document.getElementById('contactBtn');
+    if (contactBtn) {
+        contactBtn.addEventListener('click', function (e) {
+            // Let the default link behavior work
+            // This ensures WhatsApp opens properly
+            const href = this.getAttribute('href');
+            if (href && href.includes('wa.me')) {
+                // Force open in new window/tab
+                window.open(href, '_blank');
+                e.preventDefault();
+            }
+        });
+    }
+
     // Add smooth scroll behavior
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -320,21 +293,12 @@ function init() {
             }
         });
     });
-    
-    // Add keyboard accessibility
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            const contactInfo = document.getElementById('contactInfo');
-            if (contactInfo.classList.contains('show')) {
-                contactInfo.classList.remove('show');
-            }
-        }
-    });
-    
+
     // Log page load
     console.log('%c🚫 Halaman Isolir Loaded', 'color: #667eea; font-size: 20px; font-weight: bold;');
     console.log('%cHubungi customer service untuk mengaktifkan kembali layanan Anda', 'color: #f5576c; font-size: 14px;');
 }
+
 
 // Wait for DOM to be ready
 if (document.readyState === 'loading') {
